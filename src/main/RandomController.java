@@ -20,7 +20,7 @@ public class RandomController implements IRobotController {
         while(!robot.getLocation().equals(robot.getTargetLocation()) && active) {
         //robot generates a random number till it is not facing a wall
         do {  // generate a random number between 0-3 (inclusive)
-            int rand = (int)Math.round(Math.random()*3);
+            int rand = (int)Math.floor(Math.random()*4);
 
             // turn into one of the four directions, as determined
             // by the random number that was generated:
