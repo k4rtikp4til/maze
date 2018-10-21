@@ -18,7 +18,8 @@ public class RandomController implements IRobotController {
         // loop while we haven't found the exit and the agent
         // has not been interrupted
         while(!robot.getLocation().equals(robot.getTargetLocation()) && active) {
-            // generate a random number between 0-3 (inclusive)
+        //robot generates a random number till it is not facing a wall
+        do {  // generate a random number between 0-3 (inclusive)
             int rand = (int)Math.round(Math.random()*3);
 
             // turn into one of the four directions, as determined
@@ -41,10 +42,9 @@ public class RandomController implements IRobotController {
                 robot.face(IRobot.BEHIND);
                 break;
             }
-
-            // move one step into the direction the robot is facing
+          } while (robot.look(IRobot.AHEAD) == IRobot.WALL);
+           // move one step into the direction the robot is facing
             robot.advance();
-
             // wait for a while if we are supposed to
             if (delay > 0)
                 robot.sleep(delay);
