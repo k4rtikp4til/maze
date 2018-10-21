@@ -31,15 +31,19 @@ public class RandomController implements IRobotController {
             switch (rand) {
             case 0:
                 robot.face(IRobot.AHEAD);
+                robot.getLogger().log(IRobot.AHEAD);
                 break;
             case 1:
                 robot.face(IRobot.LEFT);
+                robot.getLogger().log(IRobot.LEFT);
                 break;
             case 2:
                 robot.face(IRobot.RIGHT);
+                robot.getLogger().log(IRobot.RIGHT);
                 break;
             case 3:
                 robot.face(IRobot.BEHIND);
+                robot.getLogger().log(IRobot.BEHIND);
                 break;
             }
           } while (robot.look(IRobot.AHEAD) == IRobot.WALL);
@@ -48,6 +52,7 @@ public class RandomController implements IRobotController {
             // wait for a while if we are supposed to
             if (delay > 0)
                 robot.sleep(delay);
+
        }
     }
 
