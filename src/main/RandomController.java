@@ -19,8 +19,11 @@ public class RandomController implements IRobotController {
         // has not been interrupted
         while(!robot.getLocation().equals(robot.getTargetLocation()) && active) {
         //robot generates a random number till it is not facing a wall
-        do {  // generate a random number between 0-3 (inclusive)
+        if (Math.random() <= 0.125||robot.look(IRobot.AHEAD) == IRobot.WALL) {
+         do {  // generate a random number between 0-3 (inclusive)
             int rand = (int)Math.floor(Math.random()*4);
+            //math floor to generate equal probability
+            // math floor rounds to lower integer value
 
             // turn into one of the four directions, as determined
             // by the random number that was generated:
@@ -48,7 +51,10 @@ public class RandomController implements IRobotController {
             }
           } while (robot.look(IRobot.AHEAD) == IRobot.WALL);
            // move one step into the direction the robot is facing
-            robot.advance();
+            robot.advance();;
+          }
+        else robot.advance();
+            // robot advances if there is no wall ahead
             // wait for a while if we are supposed to
             if (delay > 0)
                 robot.sleep(delay);
